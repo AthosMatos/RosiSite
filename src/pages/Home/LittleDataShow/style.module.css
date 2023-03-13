@@ -1,0 +1,4 @@
+.LittleData > *:not(:last-child) {
+    display: block;
+    margin: 1.2vw 0vw 1.2vw 0vw; 
+} 
