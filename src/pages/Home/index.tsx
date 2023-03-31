@@ -1,5 +1,5 @@
 import LittleDataShow from "./LittleDataShow";
-import {AiOutlineMail, AiOutlineTwitter} from 'react-icons/ai';
+import {AiFillCodeSandboxSquare, AiOutlineMail, AiOutlineTwitter} from 'react-icons/ai';
 import {AiOutlineLinkedin , AiOutlineUser} from 'react-icons/ai';
 import { BsInstagram } from 'react-icons/bs';
 import MainInfo from "./MainInfo";
@@ -18,11 +18,18 @@ const Home = () =>
         }}>
             
             <LittleDataShow
+            onClick={[
+                ()=>
+                {
+                    window.open('http://lattes.cnpq.br/7042008440404612');
+                },
+
+            ]}
             icons={[
-                {text:'Instagram',icon:BsInstagram},
-                {text:'Email',icon:AiOutlineMail},
-                {text:'Twitter',icon:AiOutlineTwitter},
-                {text:'linkedin',icon:AiOutlineLinkedin}
+                {text:'Lattes',icon:AiFillCodeSandboxSquare},
+                {text:'rosi@mail.com',icon:AiOutlineMail},
+               // {text:'Twitter',icon:AiOutlineTwitter},
+                //{text:'linkedin',icon:AiOutlineLinkedin}
             ]}
             dataName="Socials"/>
             

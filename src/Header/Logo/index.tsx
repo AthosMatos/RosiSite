@@ -1,7 +1,11 @@
+import { useSelector } from "react-redux"
 import colors from "../../colors"
+import { lightModeReducerTypes } from "../../redux/lightModeReducer"
 
 const Logo = () =>
 {
+    const theme = useSelector((state:lightModeReducerTypes) => state.lightMode)
+    
     return (
         <div style={{
             top: '30px',
@@ -19,20 +23,22 @@ const Logo = () =>
                 lineHeight: '94%',
                 display: 'flex',
                 alignItems: 'flex-end',
-                color: colors.textDark,
+                color: theme.iconColor,
                 flexDirection: 'column',
                 
             }}>
-                <p style={{fontWeight:'bolder',fontFamily:'Goldplay Bold'}}>Rosiery</p>
+                <p style={{fontWeight:'bolder',fontFamily:'Goldplay Bold', color: theme.iconColor,}}>Rosiery</p>
                 Maia
             </div>
+            
             <div style={{
                 width: '4px',
                 marginLeft: '6px',
                 marginRight: '6px',
                 borderRadius: 1000,
-                backgroundColor: colors.textDark,
+                backgroundColor: theme.iconColor,
             }}/>
+
             <img 
             style={{
                 width: '3.8vw',

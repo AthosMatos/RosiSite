@@ -13,7 +13,7 @@ export const cronogramaGlobals = createSlice({
     },
     reducers: 
     {
-        updateSelected: (state, action) => 
+        updateSelectedCronograma: (state, action) => 
         {
             state.currentSelected = action.payload
         }
@@ -21,6 +21,6 @@ export const cronogramaGlobals = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {updateSelected} = cronogramaGlobals.actions
+export const {updateSelectedCronograma} = cronogramaGlobals.actions
 
 export default cronogramaGlobals.reducer

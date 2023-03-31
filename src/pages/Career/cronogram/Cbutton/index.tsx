@@ -2,19 +2,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import style from '../../style.module.css'
 import { motion } from 'framer-motion'
 import { pageReducerTypes } from '../../../../redux/pageReducer'
-import { cronogramaGlobalsType,updateSelected } from '../cronogramaGlobals'
+import { cronogramaGlobalsType,updateSelectedCronograma } from '../cronogramaGlobals'
+import { lightModeReducerTypes } from '../../../../redux/lightModeReducer'
 
 interface CbuttonProps
 {
     index: number
     color: string
+    year?: string
 }
 
 const Cbutton = (props:CbuttonProps) =>
 {
-    const page = useSelector((state:pageReducerTypes) => state.pages)
     const cronogramGlobals = useSelector((state:cronogramaGlobalsType) => state.globals)
     const dispatch = useDispatch()
+    const theme = useSelector((state:lightModeReducerTypes) => state.lightMode)
 
     return (
         <div 
@@ -22,9 +24,21 @@ const Cbutton = (props:CbuttonProps) =>
         style={{
             display: 'flex',
             flexDirection: 'row',
+            alignItems: 'center',
         }}>
+            <motion.h1 
+            animate={{
+                opacity: (cronogramGlobals.currentSelected == props.index) ? 1 : 0.4,
+            }}
+            style={{
+                fontSize: 'clamp(0.5rem, 1.4vw, 3rem)',
+                fontFamily: 'Goldplay Bold',
+                color: props.color,
+            }}>{props.year? props.year : 'Year'}
+            </motion.h1>
+
             <motion.div 
-            onClick={() => dispatch(updateSelected(props.index))}
+            onClick={() => dispatch(updateSelectedCronograma(props.index))}
             animate={{
                 opacity: (cronogramGlobals.currentSelected == props.index) ? 1 : 0.4,
             }}

@@ -1,22 +1,38 @@
+import { useSelector } from 'react-redux'
 import style from '../style.module.css'
+import { cronogramaGlobalsType } from '../cronogram/cronogramaGlobals'
+import { motion } from 'framer-motion'
 
-const Images = () =>
+interface ImagesProps
 {
+    images: {image1:string,image2:string,image3:string}[]
+}
 
+const Images = (props:ImagesProps) =>
+{
+    const GlobalcurrSelected = useSelector((state:cronogramaGlobalsType) => state.globals.currentSelected)
+ 
     return (
         <div
         style={{
             display: 'flex',
             flexDirection: 'row',
         }}>
-            <img 
+            <div 
             style={{
                 borderRadius: '0.8rem',
                 marginRight: '1rem',
             }}
-            width={300}
-            src="https://www.se.com/ph/en/assets/v2/516/media/230667/900/709934422-Buildings-Facts-IC-1920x1080.jpg" alt="img1"/>
-           
+            >
+                <img
+                style={{
+                    borderRadius: '0.8rem',
+                    objectFit: 'cover',
+                    width: '250px',
+                    height: '400px',
+                }}
+                src={props.images[GlobalcurrSelected] ? props.images[GlobalcurrSelected].image1 : 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png'} alt="img1"/>
+            </div>
             <div
             style={{
                 display: 'flex',
@@ -26,17 +42,22 @@ const Images = () =>
                 style={{
                     borderRadius: '0.8rem',
                     marginBottom: '1rem',
+                    objectFit: 'cover',
+                    width: '140px',
+                    height: '140px',
+                   
                 }}
-                width={200}
-                height={200}
-                src="https://www.se.com/ph/en/assets/v2/516/media/230667/900/709934422-Buildings-Facts-IC-1920x1080.jpg" alt="img1"/>
+                src={props.images[GlobalcurrSelected]?props.images[GlobalcurrSelected].image2:'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png'} alt="img1"/>
+               
                 <img 
                 style={{
                     borderRadius: '0.8rem',
+                    objectFit: 'cover',
+                    width: '140px',
+                    height: '245px',
                 }}
-                width={200}
-                height={300}
-                src="https://www.themillsbuilding.com/userfiles/cms/building/images/1/building.jpg" alt="img1"/>
+                src={props.images[GlobalcurrSelected]?props.images[GlobalcurrSelected].image3: 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png'} alt="img1"/>
+              
             </div>
         </div>
     )

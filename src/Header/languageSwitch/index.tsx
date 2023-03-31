@@ -1,5 +1,9 @@
+import { useSelector } from "react-redux"
+import { lightModeReducerTypes } from "../../redux/lightModeReducer"
+
 const LanguageSwitch = () => 
 {
+    const theme = useSelector((state:lightModeReducerTypes) => state.lightMode)
     
     return (
     <div style={{
@@ -9,6 +13,7 @@ const LanguageSwitch = () =>
 
     }}>
         <p style={{
+            color: theme.textColor,
             fontFamily: 'Goldplay ',
             fontSize: '1.1vw',
             fontWeight: '400',

@@ -3,6 +3,7 @@ import { forwardRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { pageReducerTypes, updatePage } from '../../../redux/pageReducer';
 import colors from '../../../colors';
+import { lightModeReducerTypes } from '../../../redux/lightModeReducer';
 
 interface PagesSwitcherClicableProps
 {
@@ -15,12 +16,13 @@ const PagesSwitcherClicable = forwardRef((props:PagesSwitcherClicableProps,ref:R
 {  
     const pages = useSelector((state:pageReducerTypes) => state.pages)
     const dispatch = useDispatch();
-
+    const theme = useSelector((state:lightModeReducerTypes) => state.lightMode)
+    
     return (
         <motion.p 
         transition={{duration: 0.1}}
         animate = {{
-            color: props.pageIndex == pages.currentPageIndex ? pages.currentColor : colors.textDark,
+            color: props.pageIndex == pages.currentPageIndex ? pages.currentColor : theme.textColor,
             fontWeight: props.pageIndex == pages.currentPageIndex ? '800' : '400',
         }}
         ref={ref}

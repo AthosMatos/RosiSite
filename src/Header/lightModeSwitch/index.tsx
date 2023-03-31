@@ -1,13 +1,28 @@
 
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { pageReducerTypes } from '../../redux/pageReducer'
+import { lightModeReducerTypes, updateLightMode } from '../../redux/lightModeReducer' 
 
 const LightModeSwitch = () =>
 {
     const pages = useSelector((state:pageReducerTypes) => state.pages)
-    const [isLightMode, setIsLightMode] = useState(true)
+    const theme = useSelector((state:lightModeReducerTypes) => state.lightMode)
+
+    const [isLightMode, setIsLightMode] = useState(theme.mode == 'light'? true : false)
+    const dispatch = useDispatch();
+
+    useEffect(()=>
+    {
+        setIsLightMode(theme.mode == 'light'? true : false)
+    },[theme])
+
+    useEffect(()=>
+    {
+      
+        dispatch(updateLightMode(isLightMode? 'light' : 'dark'))
+    },[isLightMode])
 
     return (
         <motion.div
@@ -20,7 +35,11 @@ const LightModeSwitch = () =>
         }}>
             <motion.div
             layout
-            onClick={() => setIsLightMode(!isLightMode)}
+            onClick={() => 
+            {
+                localStorage.setItem('theme',!isLightMode? 'light' : 'dark')
+                setIsLightMode(!isLightMode)
+            }}
             animate={{
                 marginLeft: isLightMode? 0 :'1.6vw',
                 backgroundColor: pages.currentColor,

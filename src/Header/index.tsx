@@ -6,11 +6,10 @@ import style from './style.module.css'
 
 const Header = () =>
 {   
-  
-
     return (
         <div 
         style={{
+           
             display: 'flex',
             alignItems: 'center',
             marginTop: '36px',
@@ -31,7 +30,7 @@ const Header = () =>
                 flexDirection: 'row',
                 paddingRight: '8vw',
             }}>
-                <LanguageSwitch/>
+                {/* <LanguageSwitch/> */}
 
                 <LightModeSwitch/>
             </div>

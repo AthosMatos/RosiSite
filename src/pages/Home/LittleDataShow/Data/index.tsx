@@ -1,18 +1,25 @@
 import { IconType } from "react-icons"
 import colors from "../../../../colors"
 import { motion } from "framer-motion"
+import { useSelector } from "react-redux"
+import { lightModeReducerTypes } from "../../../../redux/lightModeReducer"
 
 interface SocialProps
 {
-    Icon: IconType,
-    text: string,
-    iconSize?: number,
+    Icon: IconType
+    text: string
+    iconSize?: number
+    onPress?: () => void
 }
 
 const Data = (props:SocialProps) => 
 {
+    const theme = useSelector((state:lightModeReducerTypes) => state.lightMode)
+    
     return (
-        <div style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
+        <div 
+        onClick={props.onPress}
+        style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
             <motion.div 
             whileHover={{scale:1.1}}
             whileTap={{scale:0.97}}
@@ -38,6 +45,7 @@ const Data = (props:SocialProps) =>
             </motion.div>
             <p 
             style={{
+                color: theme.textColor,
                 fontWeight:'400',
                 userSelect: 'none',
             }}>{props.text}</p>
